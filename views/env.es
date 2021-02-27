@@ -1,4 +1,3 @@
-require('coffee-react/register')
 require('@babel/register')(require('../babel-register.config'))
 import path from 'path-extra'
 import fs from 'fs-extra'
@@ -63,10 +62,7 @@ for (const key in originConfig) {
   window.config[key] = originConfig[key]
 }
 
-if (
-  process.env.NODE_ENV === 'production' &&
-  lodash.get(originConfig, 'poi.misc.exceptionReporting')
-) {
+if (process.env.NODE_ENV === 'production' && window.config.get?.('poi.misc.exceptionReporting')) {
   init({
     build: window.LATEST_COMMIT,
     paths: [window.ROOT, window.APPDATA_PATH],
